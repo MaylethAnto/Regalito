@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres seguir siendo mi novia?</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        .lirio {
+            position: absolute;
+            animation: flotar 3s ease-in-out infinite;
+        }
+
+        /* Lirios por toda la pantalla - MÁS DISTRIBUIDOS */
+        .lirio:nth-child(1) { left: 2%; top: 5%; animation-delay: 0s; }
+        .lirio:nth-child(2) { right: 3%; top: 8%; animation-delay: 0.2s; }
+        .lirio:nth-child(3) { left: 8%; top: 25%; animation-delay: 0.4s; }
+        .lirio:nth-child(4) { right: 10%; top: 30%; animation-delay: 0.6s; }
+        .lirio:nth-child(5) { left: 5%; bottom: 20%; animation-delay: 0.8s; }
+        .lirio:nth-child(6) { right: 6%; bottom: 25%; animation-delay: 1s; }
+        .lirio:nth-child(7) { left: 15%; top: 50%; animation-delay: 1.2s; }
+        .lirio:nth-child(8) { right: 18%; top: 55%; animation-delay: 1.4s; }
+        .lirio:nth-child(9) { left: 12%; bottom: 45%; animation-delay: 1.6s; }
+        .lirio:nth-child(10) { right: 15%; bottom: 8%; animation-delay: 1.8s; }
+        .lirio:nth-child(11) { left: 25%; top: 12%; animation-delay: 2s; }
+        .lirio:nth-child(12) { right: 28%; top: 18%; animation-delay: 2.2s; }
+        .lirio:nth-child(13) { left: 30%; bottom: 35%; animation-delay: 2.4s; }
+        .lirio:nth-child(14) { right: 32%; bottom: 40%; animation-delay: 2.6s; }
+        .lirio:nth-child(15) { left: 40%; top: 8%; animation-delay: 2.8s; }
+        .lirio:nth-child(16) { right: 42%; top: 12%; animation-delay: 3s; }
+        .lirio:nth-child(17) { left: 38%; bottom: 15%; animation-delay: 0.3s; }
+        .lirio:nth-child(18) { right: 40%; bottom: 18%; animation-delay: 0.5s; }
+        .lirio:nth-child(19) { left: 65%; top: 20%; animation-delay: 0.7s; }
+        .lirio:nth-child(20) { right: 68%; top: 25%; animation-delay: 0.9s; }
+        .lirio:nth-child(21) { left: 70%; bottom: 30%; animation-delay: 1.1s; }
+        .lirio:nth-child(22) { right: 72%; bottom: 35%; animation-delay: 1.3s; }
+        .lirio:nth-child(23) { left: 80%; top: 45%; animation-delay: 1.5s; }
+        .lirio:nth-child(24) { right: 85%; top: 50%; animation-delay: 1.7s; }
+        .lirio:nth-child(25) { left: 88%; bottom: 12%; animation-delay: 1.9s; }
+        .lirio:nth-child(26) { right: 90%; bottom: 55%; animation-delay: 2.1s; }
+        .lirio:nth-child(27) { left: 20%; top: 75%; animation-delay: 2.3s; }
+        .lirio:nth-child(28) { right: 22%; top: 80%; animation-delay: 2.5s; }
+        .lirio:nth-child(29) { left: 60%; top: 65%; animation-delay: 2.7s; }
+        .lirio:nth-child(30) { right: 58%; top: 70%; animation-delay: 2.9s; }
+
+
+        .lirio svg {
+            width: 80px;
+            height: 80px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+        }
+
+        @keyframes flotar {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .mensaje {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            max-width: 500px;
+            opacity: 0;
+            transform: scale(0.8);
+            animation: aparecer 2s ease-out 3s forwards;
+        }
+
+        @keyframes aparecer {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .titulo {
+            color: #764ba2;
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            font-weight: bold;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 4s forwards;
+        }
+
+        .subtitulo {
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 4.5s forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .botones {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 5s forwards;
+        }
+
+        .boton {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            min-width: 100px;
+        }
+
+        .boton-si {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            color: white;
+            box-shadow: 0 8px 20px rgba(238, 90, 82, 0.3);
+        }
+
+        .boton-si:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(238, 90, 82, 0.4);
+        }
+
+        .boton-no {
+            background: linear-gradient(135deg, #a8a8a8, #8a8a8a);
+            color: white;
+            box-shadow: 0 8px 20px rgba(138, 138, 138, 0.3);
+        }
+
+        .boton-no:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(138, 138, 138, 0.4);
+        }
+
+        .respuesta {
+            margin-top: 40px;
+            font-size: 1.8em;
+            font-weight: bold;
+            opacity: 0;
+            transform: scale(0);
+        }
+
+        .corazones {
+            color: #ff6b6b;
+            animation: latirCorazones 1.5s ease-out forwards;
+        }
+
+        .carita-triste {
+            color: #666;
+            animation: aparecerTriste 1s ease-out forwards;
+        }
+
+        @keyframes latirCorazones {
+            0% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.3);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes aparecerTriste {
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .corazones-flotantes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .corazon-flotante {
+            position: absolute;
+            color: #ff6b6b;
+            font-size: 2em;
+            opacity: 0;
+            animation: flotarCorazon 3s ease-out forwards;
+        }
+
+        @keyframes flotarCorazon {
+            0% {
+                opacity: 1;
+                transform: translateY(100vh) scale(0);
+            }
+            20% {
+                transform: translateY(80vh) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scale(1);
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Lirios flotantes -->
+    <div class="lirio">
+        <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+            <!-- Pétalos del lirio morado -->
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(0 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(60 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(120 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(180 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(240 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(300 50 30)"/>
+            <!-- Centro del lirio -->
+            <circle cx="50" cy="30" r="4" fill="#dda0dd"/>
+            <!-- Estamines -->
+            <circle cx="47" cy="27" r="1.5" fill="#ffd700"/>
+            <circle cx="53" cy="27" r="1.5" fill="#ffd700"/>
+            <circle cx="50" cy="24" r="1.5" fill="#ffd700"/>
+            <!-- Tallo -->
+            <line x1="50" y1="50" x2="50" y2="110" stroke="#228b22" stroke-width="4"/>
+            <!-- Hojas -->
+            <ellipse cx="45" cy="70" rx="3" ry="15" fill="#32cd32" transform="rotate(-30 45 70)"/>
+            <ellipse cx="55" cy="85" rx="3" ry="12" fill="#32cd32" transform="rotate(30 55 85)"/>
+        </svg>
+    </div>
+    <div class="lirio">
+        <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(0 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(60 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(120 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(180 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(240 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(300 50 30)"/>
+            <circle cx="50" cy="30" r="4" fill="#dda0dd"/>
+            <circle cx="47" cy="27" r="1.5" fill="#ffd700"/>
+            <circle cx="53" cy="27" r="1.5" fill="#ffd700"/>
+            <circle cx="50" cy="24" r="1.5" fill="#ffd700"/>
+            <line x1="50" y1="50" x2="50" y2="110" stroke="#228b22" stroke-width="4"/>
+            <ellipse cx="45" cy="70" rx="3" ry="15" fill="#32cd32" transform="rotate(-30 45 70)"/>
+            <ellipse cx="55" cy="85" rx="3" ry="12" fill="#32cd32" transform="rotate(30 55 85)"/>
+        </svg>
+    </div>
+    <div class="lirio">
+        <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(0 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(60 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(120 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(180 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(240 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(300 50 30)"/>
+            <circle cx="50" cy="30" r="4" fill="#dda0dd"/>
+            <circle cx="47" cy="27" r="1.5" fill="#ffd700"/>
+            <circle cx="53" cy="27" r="1.5" fill="#ffd700"/>
+            <circle cx="50" cy="24" r="1.5" fill="#ffd700"/>
+            <line x1="50" y1="50" x2="50" y2="110" stroke="#228b22" stroke-width="4"/>
+            <ellipse cx="45" cy="70" rx="3" ry="15" fill="#32cd32" transform="rotate(-30 45 70)"/>
+            <ellipse cx="55" cy="85" rx="3" ry="12" fill="#32cd32" transform="rotate(30 55 85)"/>
+        </svg>
+    </div>
+    <div class="lirio">
+        <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(0 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(60 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(120 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(180 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(240 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(300 50 30)"/>
+            <circle cx="50" cy="30" r="4" fill="#dda0dd"/>
+            <circle cx="47" cy="27" r="1.5" fill="#ffd700"/>
+            <circle cx="53" cy="27" r="1.5" fill="#ffd700"/>
+            <circle cx="50" cy="24" r="1.5" fill="#ffd700"/>
+            <line x1="50" y1="50" x2="50" y2="110" stroke="#228b22" stroke-width="4"/>
+            <ellipse cx="45" cy="70" rx="3" ry="15" fill="#32cd32" transform="rotate(-30 45 70)"/>
+            <ellipse cx="55" cy="85" rx="3" ry="12" fill="#32cd32" transform="rotate(30 55 85)"/>
+        </svg>
+    </div>
+    <div class="lirio">
+        <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(0 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(60 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(120 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(180 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(240 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(300 50 30)"/>
+            <circle cx="50" cy="30" r="4" fill="#dda0dd"/>
+            <circle cx="47" cy="27" r="1.5" fill="#ffd700"/>
+            <circle cx="53" cy="27" r="1.5" fill="#ffd700"/>
+            <circle cx="50" cy="24" r="1.5" fill="#ffd700"/>
+            <line x1="50" y1="50" x2="50" y2="110" stroke="#228b22" stroke-width="4"/>
+            <ellipse cx="45" cy="70" rx="3" ry="15" fill="#32cd32" transform="rotate(-30 45 70)"/>
+            <ellipse cx="55" cy="85" rx="3" ry="12" fill="#32cd32" transform="rotate(30 55 85)"/>
+        </svg>
+    </div>
+    <div class="lirio">
+        <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(0 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(60 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(120 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(180 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(240 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(300 50 30)"/>
+            <circle cx="50" cy="30" r="4" fill="#dda0dd"/>
+            <circle cx="47" cy="27" r="1.5" fill="#ffd700"/>
+            <circle cx="53" cy="27" r="1.5" fill="#ffd700"/>
+            <circle cx="50" cy="24" r="1.5" fill="#ffd700"/>
+            <line x1="50" y1="50" x2="50" y2="110" stroke="#228b22" stroke-width="4"/>
+            <ellipse cx="45" cy="70" rx="3" ry="15" fill="#32cd32" transform="rotate(-30 45 70)"/>
+            <ellipse cx="55" cy="85" rx="3" ry="12" fill="#32cd32" transform="rotate(30 55 85)"/>
+        </svg>
+    </div>
+
+    <div class="lirio">
+        <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(0 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(60 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(120 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(180 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(240 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(300 50 30)"/>
+            <circle cx="50" cy="30" r="4" fill="#dda0dd"/>
+            <circle cx="47" cy="27" r="1.5" fill="#ffd700"/>
+            <circle cx="53" cy="27" r="1.5" fill="#ffd700"/>
+            <circle cx="50" cy="24" r="1.5" fill="#ffd700"/>
+            <line x1="50" y1="50" x2="50" y2="110" stroke="#228b22" stroke-width="4"/>
+            <ellipse cx="45" cy="70" rx="3" ry="15" fill="#32cd32" transform="rotate(-30 45 70)"/>
+            <ellipse cx="55" cy="85" rx="3" ry="12" fill="#32cd32" transform="rotate(30 55 85)"/>
+        </svg>
+    </div>
+    <div class="lirio">
+        <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(0 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(60 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(120 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(180 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(240 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(300 50 30)"/>
+            <circle cx="50" cy="30" r="4" fill="#dda0dd"/>
+            <circle cx="47" cy="27" r="1.5" fill="#ffd700"/>
+            <circle cx="53" cy="27" r="1.5" fill="#ffd700"/>
+            <circle cx="50" cy="24" r="1.5" fill="#ffd700"/>
+            <line x1="50" y1="50" x2="50" y2="110" stroke="#228b22" stroke-width="4"/>
+            <ellipse cx="45" cy="70" rx="3" ry="15" fill="#32cd32" transform="rotate(-30 45 70)"/>
+            <ellipse cx="55" cy="85" rx="3" ry="12" fill="#32cd32" transform="rotate(30 55 85)"/>
+        </svg>
+    </div>
+    <div class="lirio">
+        <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(0 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(60 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(120 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(180 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(240 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(300 50 30)"/>
+            <circle cx="50" cy="30" r="4" fill="#dda0dd"/>
+            <circle cx="47" cy="27" r="1.5" fill="#ffd700"/>
+            <circle cx="53" cy="27" r="1.5" fill="#ffd700"/>
+            <circle cx="50" cy="24" r="1.5" fill="#ffd700"/>
+            <line x1="50" y1="50" x2="50" y2="110" stroke="#228b22" stroke-width="4"/>
+            <ellipse cx="45" cy="70" rx="3" ry="15" fill="#32cd32" transform="rotate(-30 45 70)"/>
+            <ellipse cx="55" cy="85" rx="3" ry="12" fill="#32cd32" transform="rotate(30 55 85)"/>
+        </svg>
+    </div>
+    <div class="lirio">
+        <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(0 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(60 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(120 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(180 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(240 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(300 50 30)"/>
+            <circle cx="50" cy="30" r="4" fill="#dda0dd"/>
+            <circle cx="47" cy="27" r="1.5" fill="#ffd700"/>
+            <circle cx="53" cy="27" r="1.5" fill="#ffd700"/>
+            <circle cx="50" cy="24" r="1.5" fill="#ffd700"/>
+            <line x1="50" y1="50" x2="50" y2="110" stroke="#228b22" stroke-width="4"/>
+            <ellipse cx="45" cy="70" rx="3" ry="15" fill="#32cd32" transform="rotate(-30 45 70)"/>
+            <ellipse cx="55" cy="85" rx="3" ry="12" fill="#32cd32" transform="rotate(30 55 85)"/>
+        </svg>
+    </div>
+    <div class="lirio">
+        <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(0 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(60 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(120 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(180 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(240 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(300 50 30)"/>
+            <circle cx="50" cy="30" r="4" fill="#dda0dd"/>
+            <circle cx="47" cy="27" r="1.5" fill="#ffd700"/>
+            <circle cx="53" cy="27" r="1.5" fill="#ffd700"/>
+            <circle cx="50" cy="24" r="1.5" fill="#ffd700"/>
+            <line x1="50" y1="50" x2="50" y2="110" stroke="#228b22" stroke-width="4"/>
+            <ellipse cx="45" cy="70" rx="3" ry="15" fill="#32cd32" transform="rotate(-30 45 70)"/>
+            <ellipse cx="55" cy="85" rx="3" ry="12" fill="#32cd32" transform="rotate(30 55 85)"/>
+        </svg>
+    </div>
+    <div class="lirio">
+        <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(0 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(60 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(120 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(180 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(240 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(300 50 30)"/>
+            <circle cx="50" cy="30" r="4" fill="#dda0dd"/>
+            <circle cx="47" cy="27" r="1.5" fill="#ffd700"/>
+            <circle cx="53" cy="27" r="1.5" fill="#ffd700"/>
+            <circle cx="50" cy="24" r="1.5" fill="#ffd700"/>
+            <line x1="50" y1="50" x2="50" y2="110" stroke="#228b22" stroke-width="4"/>
+            <ellipse cx="45" cy="70" rx="3" ry="15" fill="#32cd32" transform="rotate(-30 45 70)"/>
+            <ellipse cx="55" cy="85" rx="3" ry="12" fill="#32cd32" transform="rotate(30 55 85)"/>
+        </svg>
+    </div>
+    <div class="lirio">
+        <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(0 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(60 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(120 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(180 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(240 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(300 50 30)"/>
+            <circle cx="50" cy="30" r="4" fill="#dda0dd"/>
+            <circle cx="47" cy="27" r="1.5" fill="#ffd700"/>
+            <circle cx="53" cy="27" r="1.5" fill="#ffd700"/>
+            <circle cx="50" cy="24" r="1.5" fill="#ffd700"/>
+            <line x1="50" y1="50" x2="50" y2="110" stroke="#228b22" stroke-width="4"/>
+            <ellipse cx="45" cy="70" rx="3" ry="15" fill="#32cd32" transform="rotate(-30 45 70)"/>
+            <ellipse cx="55" cy="85" rx="3" ry="12" fill="#32cd32" transform="rotate(30 55 85)"/>
+        </svg>
+    </div>
+    <div class="lirio">
+        <svg viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(0 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(60 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(120 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(180 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#9370db" transform="rotate(240 50 30)"/>
+            <ellipse cx="50" cy="30" rx="8" ry="25" fill="#8a2be2" transform="rotate(300 50 30)"/>
+            <circle cx="50" cy="30" r="4" fill="#dda0dd"/>
+            <circle cx="47" cy="27" r="1.5" fill="#ffd700"/>
+            <circle cx="53" cy="27" r="1.5" fill="#ffd700"/>
+            <circle cx="50" cy="24" r="1.5" fill="#ffd700"/>
+            <line x1="50" y1="50" x2="50" y2="110" stroke="#228b22" stroke-width="4"/>
+            <ellipse cx="45" cy="70" rx="3" ry="15" fill="#32cd32" transform="rotate(-30 45 70)"/>
+            <ellipse cx="55" cy="85" rx="3" ry="12" fill="#32cd32" transform<!DOCTYPE html>
+                </ellipse>
+        </svg>
+    </div>
+
+    <div class="container">
+        <div class="mensaje">
+            <h1 class="titulo">¿Quieres seguir siendo mi novia?</h1>
+            <p class="subtitulo">Ya cumplimos un mes juntas y cada día me enamoro más de ti ❤️</p>
+            
+            <div class="botones">
+                <button class="boton boton-si" onclick="responderSi()">¡SÍ! 💕</button>
+                <button class="boton boton-no" onclick="responderNo()">No... 😔</button>
+            </div>
+            
+            <div id="respuesta" class="respuesta hidden"></div>
+        </div>
+    </div>
+
+    <div class="corazones-flotantes" id="corazonesFlotantes"></div>
+
+    <script>
+        function responderSi() {
+            const respuesta = document.getElementById('respuesta');
+            const corazonesContainer = document.getElementById('corazonesFlotantes');
+            const botones = document.querySelector('.botones');
+            
+            botones.style.display = 'none';
+            
+            respuesta.innerHTML = '¡Yay! Te amo muchísimo 💖✨';
+            respuesta.className = 'respuesta corazones';
+            respuesta.classList.remove('hidden');
+            
+            // Crear corazones flotantes
+            for(let i = 0; i < 15; i++) {
+                setTimeout(() => {
+                    crearCorazon();
+                }, i * 200);
+            }
+            
+            // Cambiar color de fondo gradualmente
+            document.body.style.background = 'linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%)';
+        }
+
+        function responderNo() {
+            const respuesta = document.getElementById('respuesta');
+            const botones = document.querySelector('.botones');
+            
+            botones.style.display = 'none';
+            
+            respuesta.innerHTML = '😢 Bueno... te entiendo';
+            respuesta.className = 'respuesta carita-triste';
+            respuesta.classList.remove('hidden');
+            
+            // Cambiar a colores más tristes
+            document.body.style.background = 'linear-gradient(135deg, #bdc3c7 0%, #2c3e50 100%)';
+        }
+
+        function crearCorazon() {
+            const corazon = document.createElement('div');
+            corazon.className = 'corazon-flotante';
+            corazon.innerHTML = '💖';
+            corazon.style.left = Math.random() * 100 + '%';
+            corazon.style.animationDelay = Math.random() * 2 + 's';
+            
+            document.getElementById('corazonesFlotantes').appendChild(corazon);
+            
+            setTimeout(() => {
+                corazon.remove();
+            }, 3000);
+        }
+
+        // Pequeño easter egg - si hace doble click en el título
+        document.querySelector('.titulo').addEventListener('dblclick', function() {
+            for(let i = 0; i < 5; i++) {
+                setTimeout(() => crearCorazon(), i * 100);
+            }
+        });
+    </script>
+</body>
+</html>
